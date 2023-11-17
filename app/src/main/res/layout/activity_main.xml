@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#161616"
+    android:paddingTop="8dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/counter_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="512dp"
+        android:text="0"
+        android:textColor="#9f9f9f"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/first_upgrade"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:backgroundTint="#2b2b2b"
+        android:gravity="center"
+        android:text="Cursor\n+1$ per click\nPrice: 50$"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/second_upgrade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/second_upgrade"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:backgroundTint="#2b2b2b"
+        android:gravity="center"
+        android:text="Auto Clicker\n+1$ per second\nPrice: 125$"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/first_upgrade"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/third_upgrade"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2b2b2b"
+        android:gravity="center"
+        android:text="Mr. Clicker\n+5$ per click\nPrice: 500$"
+        app:layout_constraintEnd_toStartOf="@id/fourth_upgrade"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/first_upgrade" />
+
+    <Button
+        android:id="@+id/fourth_upgrade"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2b2b2b"
+        android:gravity="center"
+        android:text="Money Farm\n+6$ per second\nPrice: 1100$"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/third_upgrade"
+        app:layout_constraintTop_toBottomOf="@id/second_upgrade" />
+
+    <Button
+        android:id="@+id/fifth_upgrade"
+        android:layout_width="192dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2b2b2b"
+        android:gravity="center"
+        android:text="Cursor\n+100$ per click\nPrice: 12000$"
+        app:layout_constraintEnd_toStartOf="@id/fourth_upgrade"
+        app:layout_constraintStart_toEndOf="@id/third_upgrade"
+        app:layout_constraintTop_toBottomOf="@id/third_upgrade" />
+
+    <Button
+        android:id="@+id/testing_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="#2b2b2b"
+        android:gravity="center"
+        android:text="*App Bar Icons*"
+        android:textColor="#fff"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
