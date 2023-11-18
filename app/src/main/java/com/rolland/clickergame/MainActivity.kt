@@ -1,12 +1,10 @@
 package com.rolland.clickergame
 
 import android.annotation.SuppressLint
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Base64
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
 import android.widget.Button
@@ -21,8 +19,6 @@ import com.bullfrog.particle.particle.configuration.Shape
 
 class MainActivity : AppCompatActivity() {
 
-    private val particleColor = Color.parseColor("#41fdfe")
-
     private lateinit var layout: ConstraintLayout
     private lateinit var firstUpgradeBtn: Button
     private lateinit var secondUpgradeBtn: Button
@@ -31,8 +27,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var fifthUpgradeBtn: Button
     private lateinit var sixthUpgradeBtn: Button
     private lateinit var number: TextView
-    private lateinit var clickPower: TextView
-    private lateinit var autoPower: TextView
+    private lateinit var clickPowerView: TextView
+    private lateinit var autoPowerView: TextView
+
+    private val particleColor = Color.parseColor("#41fdfe")
 
     private var clickMultiplier = 1
     private var autoClicker = 0
@@ -49,8 +47,8 @@ class MainActivity : AppCompatActivity() {
         fourthUpgradeBtn = findViewById(R.id.fourth_upgrade_btn)
         fifthUpgradeBtn = findViewById(R.id.fifth_upgrade_btn)
         sixthUpgradeBtn = findViewById(R.id.sixth_upgrade_btn)
-        clickPower = findViewById(R.id.click_power_value)
-        autoPower = findViewById(R.id.auto_power_value)
+        clickPowerView = findViewById(R.id.click_power_value)
+        autoPowerView = findViewById(R.id.auto_power_value)
 
 
         val handler = Handler(Looper.getMainLooper())
@@ -63,9 +61,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
-    // FEATURE 1: make an icon that on touch shows a hanging layout with the shop (buttons)
-    // FEATURE 2: make the particle shape the current click power number
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onResume() {
@@ -90,7 +85,7 @@ class MainActivity : AppCompatActivity() {
                         .start()
 
                     val handler = Handler(Looper.getMainLooper())
-                    val runnable = Runnable { particleManager.cancel() }
+                    val runnable = Runnable { particleManager.remove() }
 
                     handler.postDelayed(runnable, 1000)
                 }
@@ -162,6 +157,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+    // might break when number reaches Int limit (2147483647)
 
     private fun autoGenerateMoney(numberView: TextView) {
         val temp = numberView.text.toString().toInt() + autoClicker
@@ -176,21 +172,19 @@ class MainActivity : AppCompatActivity() {
         numberView.text = temp.toString()
     }
 
-    // updates the power of clicks and autogenerate
     private fun updatePower() {
-        autoPower.text = autoClicker.toString()
-        clickPower.text = clickMultiplier.toString()
+        autoPowerView.text = autoClicker.toString()
+        clickPowerView.text = clickMultiplier.toString()
     }
 
     private fun getParticleCount(): Int {
-        if (clickMultiplier.toString().toInt() > 50) {
-            return 2
-        } else if (clickMultiplier.toString().toInt() > 500) {
-            return 3
-        } else if (clickMultiplier.toString().toInt() > 5000) {
+        if (clickMultiplier.toString().toInt() >= 5000)
             return 5
-        }
+        else if (clickMultiplier.toString().toInt() >= 500)
+            return 3
+        else if (clickMultiplier.toString().toInt() >= 50)
+            return 2
+
         return 1
     }
-
 }

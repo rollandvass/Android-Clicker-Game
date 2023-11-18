@@ -75,8 +75,8 @@
         android:textColor="#9f9f9f"
         android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="@id/appbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/second_upgrade_btn"
+        app:layout_constraintStart_toStartOf="@id/first_upgrade_btn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
