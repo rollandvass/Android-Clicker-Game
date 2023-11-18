@@ -1,10 +1,12 @@
 package com.rolland.clickergame
 
 import android.annotation.SuppressLint
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Base64
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
 import android.widget.Button
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var thirdUpgradeBtn: Button
     private lateinit var fourthUpgradeBtn: Button
     private lateinit var fifthUpgradeBtn: Button
+    private lateinit var sixthUpgradeBtn: Button
     private lateinit var number: TextView
     private lateinit var clickPower: TextView
     private lateinit var autoPower: TextView
@@ -39,12 +42,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         layout = findViewById(R.id.parent_view)
-        firstUpgradeBtn = findViewById(R.id.first_upgrade)
-        secondUpgradeBtn = findViewById(R.id.second_upgrade)
-        thirdUpgradeBtn = findViewById(R.id.third_upgrade)
-        fourthUpgradeBtn = findViewById(R.id.fourth_upgrade)
-        fifthUpgradeBtn = findViewById(R.id.fifth_upgrade)
         number = findViewById(R.id.counter_view)
+        firstUpgradeBtn = findViewById(R.id.first_upgrade_btn)
+        secondUpgradeBtn = findViewById(R.id.second_upgrade_btn)
+        thirdUpgradeBtn = findViewById(R.id.third_upgrade_btn)
+        fourthUpgradeBtn = findViewById(R.id.fourth_upgrade_btn)
+        fifthUpgradeBtn = findViewById(R.id.fifth_upgrade_btn)
+        sixthUpgradeBtn = findViewById(R.id.sixth_upgrade_btn)
         clickPower = findViewById(R.id.click_power_value)
         autoPower = findViewById(R.id.auto_power_value)
 
@@ -60,12 +64,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    // Cursor -> +1$ per click (price 50) - done
-    // Auto Click -> +1$ per second (price 125) - done
-    // Mr. Clicker -> +5$ per click (price 500) - done
-    // Money Farm -> +6$ per second (price 1100) - done
-    // President Clicker -> +100$ per click (price 12000) - done
-
+    // FEATURE 1: make an icon that on touch shows a hanging layout with the shop (buttons)
+    // FEATURE 2: make the particle shape the current click power number
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onResume() {
@@ -82,10 +82,10 @@ class MainActivity : AppCompatActivity() {
 
                     particleManager // container is the parent ViewGroup for particles
                         .color(particleColor)// color sampling
-                        .particleNum(5)// how many particles
+                        .particleNum(getParticleCount())// how many particles
                         .anchor(x, y)// use touch position as the anchor of the animation
                         .shape(Shape.HOLLOW_PENTACLE)// circle particle
-                        .radius(2, 15)// random radius from x to y
+                        .radius(2, 15)// random radius from 2 to 15
                         .anim(ParticleAnimation.EXPLOSION)// using explosion animation
                         .start()
 
@@ -152,6 +152,15 @@ class MainActivity : AppCompatActivity() {
                 updatePower()
             }
         }
+
+        sixthUpgradeBtn.setOnClickListener {
+            if (number.text.toString().toInt() >= 100000) {
+                autoClicker += 200
+                number.text = (number.text.toString().toInt() - 100000).toString()
+
+                updatePower()
+            }
+        }
     }
 
     private fun autoGenerateMoney(numberView: TextView) {
@@ -171,6 +180,17 @@ class MainActivity : AppCompatActivity() {
     private fun updatePower() {
         autoPower.text = autoClicker.toString()
         clickPower.text = clickMultiplier.toString()
+    }
+
+    private fun getParticleCount(): Int {
+        if (clickMultiplier.toString().toInt() > 50) {
+            return 2
+        } else if (clickMultiplier.toString().toInt() > 500) {
+            return 3
+        } else if (clickMultiplier.toString().toInt() > 5000) {
+            return 5
+        }
+        return 1
     }
 
 }

@@ -10,9 +10,65 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/click_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:gravity="center"
+        android:text="Click Power"
+        android:textColor="#9f9f9f"
+        app:layout_constraintBottom_toTopOf="@id/click_power_value"
+        app:layout_constraintEnd_toStartOf="@id/auto_power"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/click_power_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="192dp"
+        android:layout_marginBottom="324dp"
+        android:alpha="0.75"
+        android:gravity="center"
+        android:text="1"
+        android:textColor="#41fdfe"
+        app:layout_constraintBottom_toTopOf="@id/first_upgrade_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/click_power" />
+
+    <TextView
+        android:id="@+id/auto_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:gravity="center"
+        android:text="Auto Power"
+        android:textColor="#9f9f9f"
+        app:layout_constraintBottom_toTopOf="@id/auto_power_value"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/click_power"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/auto_power_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="192dp"
+        android:layout_marginBottom="324dp"
+        android:alpha="0.75"
+        android:gravity="center"
+        android:text="0"
+        android:textColor="#41fdfe"
+        app:layout_constraintBottom_toTopOf="@id/second_upgrade_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auto_power" />
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:alpha="0.3"
+        android:alpha="0.25"
         android:gravity="center"
         android:letterSpacing="0.2"
         android:text="Tap the screen"
@@ -37,7 +93,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/first_upgrade"
+        android:id="@+id/first_upgrade_btn"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
@@ -45,13 +101,13 @@
         android:gravity="center"
         android:text="Cursor\n+1$ per click\nPrice: 50$"
         android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/third_upgrade"
-        app:layout_constraintEnd_toStartOf="@id/second_upgrade"
+        app:layout_constraintBottom_toTopOf="@id/third_upgrade_btn"
+        app:layout_constraintEnd_toStartOf="@id/second_upgrade_btn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/second_upgrade"
+        android:id="@+id/second_upgrade_btn"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="400dp"
@@ -59,108 +115,62 @@
         android:gravity="center"
         android:text="Auto Clicker\n+1$ per second\nPrice: 125$"
         android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/fourth_upgrade"
+        app:layout_constraintBottom_toTopOf="@id/fourth_upgrade_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/first_upgrade"
+        app:layout_constraintStart_toEndOf="@id/first_upgrade_btn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/third_upgrade"
+        android:id="@+id/third_upgrade_btn"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#41fdfe"
         android:gravity="center"
         android:text="Mr. Clicker\n+5$ per click\nPrice: 500$"
         android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/fifth_upgrade"
-        app:layout_constraintEnd_toStartOf="@id/fourth_upgrade"
+        app:layout_constraintBottom_toTopOf="@id/fifth_upgrade_btn"
+        app:layout_constraintEnd_toStartOf="@id/fourth_upgrade_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/first_upgrade" />
+        app:layout_constraintTop_toBottomOf="@id/first_upgrade_btn" />
 
     <Button
-        android:id="@+id/fourth_upgrade"
+        android:id="@+id/fourth_upgrade_btn"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#41fdfe"
         android:gravity="center"
-        android:text="Money Farm\n+6$ per second\nPrice: 1100$"
+        android:text="Money Farm\n+6$ per second\nPrice: 1.100$"
         android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/fifth_upgrade"
+        app:layout_constraintBottom_toTopOf="@id/sixth_upgrade_btn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/third_upgrade"
-        app:layout_constraintTop_toBottomOf="@id/second_upgrade" />
+        app:layout_constraintStart_toEndOf="@id/third_upgrade_btn"
+        app:layout_constraintTop_toBottomOf="@id/second_upgrade_btn" />
 
     <Button
-        android:id="@+id/fifth_upgrade"
+        android:id="@+id/fifth_upgrade_btn"
         android:layout_width="192dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="584dp"
         android:backgroundTint="#41fdfe"
         android:gravity="center"
-        android:text="President Clicker\n+100$ per click\nPrice: 12000$"
+        android:text="President Clicker\n+100$ per click\nPrice: 12.000$"
         android:textColor="#161616"
         app:layout_constraintBottom_toTopOf="@id/appbar"
-        app:layout_constraintEnd_toEndOf="@id/fourth_upgrade"
-        app:layout_constraintStart_toStartOf="@id/third_upgrade"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/click_power"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="348dp"
-        android:gravity="center"
-        android:text="Click Power"
-        android:textColor="#9f9f9f"
-        app:layout_constraintBottom_toTopOf="@id/first_upgrade"
-        app:layout_constraintEnd_toStartOf="@id/auto_power"
+        app:layout_constraintEnd_toStartOf="@id/sixth_upgrade_btn"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/third_upgrade_btn" />
 
-    <TextView
-        android:id="@+id/click_power_value"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/sixth_upgrade_btn"
+        android:layout_width="192dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="192dp"
-        android:layout_marginBottom="324dp"
-        android:alpha="0.75"
+        android:backgroundTint="#41fdfe"
         android:gravity="center"
-        android:text="1"
-        android:textColor="#41fdfe"
-        app:layout_constraintBottom_toTopOf="@id/first_upgrade"
+        android:text="Money Pump\n+200$ per second\nPrice: 100.000$"
+        android:textColor="#161616"
+        app:layout_constraintBottom_toTopOf="@id/appbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/click_power" />
-
-    <TextView
-        android:id="@+id/auto_power"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginBottom="348dp"
-        android:gravity="center"
-        android:text="Auto Power"
-        android:textColor="#9f9f9f"
-        app:layout_constraintBottom_toTopOf="@id/second_upgrade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/click_power"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/auto_power_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="192dp"
-        android:layout_marginBottom="324dp"
-        android:alpha="0.75"
-        android:gravity="center"
-        android:text="0"
-        android:textColor="#41fdfe"
-        app:layout_constraintBottom_toTopOf="@id/second_upgrade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auto_power" />
+        app:layout_constraintStart_toEndOf="@id/fifth_upgrade_btn"
+        app:layout_constraintTop_toBottomOf="@id/fourth_upgrade_btn" />
 
     <TextView
         android:id="@+id/appbar"
