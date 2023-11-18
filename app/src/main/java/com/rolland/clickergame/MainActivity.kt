@@ -19,7 +19,7 @@ import com.bullfrog.particle.particle.configuration.Shape
 
 class MainActivity : AppCompatActivity() {
 
-    private val particleColor = Color.parseColor("#FFD700")
+    private val particleColor = Color.parseColor("#41fdfe")
 
     private lateinit var layout: ConstraintLayout
     private lateinit var firstUpgradeBtn: Button
