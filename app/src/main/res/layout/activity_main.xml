@@ -16,7 +16,7 @@
         android:layout_marginBottom="256dp"
         android:text="0"
         android:textColor="#9f9f9f"
-        android:textSize="32dp"
+        android:textSize="32sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,11 +79,11 @@
         android:layout_marginTop="500dp"
         android:backgroundTint="#2b2b2b"
         android:gravity="center"
-        android:text="Cursor\n+100$ per click\nPrice: 12000$"
+        android:text="President Clicker\n+100$ per click\nPrice: 12000$"
+        app:layout_constraintBottom_toTopOf="@id/appbar"
         app:layout_constraintEnd_toStartOf="@id/fourth_upgrade"
         app:layout_constraintStart_toEndOf="@id/third_upgrade"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/appbar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/click_power"
@@ -107,7 +107,7 @@
         android:layout_marginBottom="324dp"
         android:gravity="center"
         android:text="1"
-        android:textColor="#5f5f5f"
+        android:textColor="#7f7f7f"
         app:layout_constraintBottom_toTopOf="@id/first_upgrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +135,7 @@
         android:layout_marginBottom="324dp"
         android:gravity="center"
         android:text="0"
-        android:textColor="#5f5f5f"
+        android:textColor="#7f7f7f"
         app:layout_constraintBottom_toTopOf="@id/second_upgrade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -149,7 +149,7 @@
         android:gravity="center"
         android:text="*App Bar Icons*"
         android:textColor="#fff"
-        android:textSize="24dp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

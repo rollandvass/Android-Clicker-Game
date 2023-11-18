@@ -5,12 +5,10 @@ import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View.OnTouchListener
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.bullfrog.particle.IParticleManager
@@ -21,7 +19,7 @@ import com.bullfrog.particle.particle.configuration.Shape
 
 class MainActivity : AppCompatActivity() {
 
-    val particleColor = Color.parseColor("#FFD700")
+    private val particleColor = Color.parseColor("#FFD700")
 
     private lateinit var layout: ConstraintLayout
     private lateinit var firstUpgradeBtn: Button
@@ -33,8 +31,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var clickPower: TextView
     private lateinit var autoPower: TextView
 
-    private var click_multiplier = 1
-    private var auto_clicker = 0
+    private var clickMultiplier = 1
+    private var autoClicker = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        val handleTouch = OnTouchListener { v, event ->
+        val handleTouch = OnTouchListener { _, event ->
             val particleManager: IParticleManager = Particles.with(this, layout)
             val x = event.x.toInt()
             val y = event.y.toInt()
@@ -112,7 +110,7 @@ class MainActivity : AppCompatActivity() {
 
         firstUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 50) {
-                click_multiplier++
+                clickMultiplier++
                 number.text = (number.text.toString().toInt() - 50).toString()
 
                 updatePower()
@@ -121,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
         secondUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 125) {
-                auto_clicker++
+                autoClicker++
                 number.text = (number.text.toString().toInt() - 125).toString()
 
                 updatePower()
@@ -130,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
         thirdUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 500) {
-                click_multiplier += 5
+                clickMultiplier += 5
                 number.text = (number.text.toString().toInt() - 500).toString()
 
                 updatePower()
@@ -139,7 +137,7 @@ class MainActivity : AppCompatActivity() {
 
         fourthUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 1100) {
-                auto_clicker += 6
+                autoClicker += 6
                 number.text = (number.text.toString().toInt() - 1100).toString()
 
                 updatePower()
@@ -148,7 +146,7 @@ class MainActivity : AppCompatActivity() {
 
         fifthUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 12000) {
-                auto_clicker += 100
+                clickMultiplier += 100
                 number.text = (number.text.toString().toInt() - 12000).toString()
 
                 updatePower()
@@ -157,22 +155,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun autoGenerateMoney(numberView: TextView) {
-        var temp = numberView.text.toString().toInt() + auto_clicker
+        val temp = numberView.text.toString().toInt() + autoClicker
 
         numberView.text = temp.toString()
 
     }
 
     private fun generateMoney(numberView: TextView) {
-        var temp = numberView.text.toString().toInt() + click_multiplier
+        val temp = numberView.text.toString().toInt() + clickMultiplier
 
         numberView.text = temp.toString()
     }
 
     // updates the power of clicks and autogenerate
     private fun updatePower() {
-        autoPower.text = auto_clicker.toString()
-        clickPower.text = click_multiplier.toString()
+        autoPower.text = autoClicker.toString()
+        clickPower.text = clickMultiplier.toString()
     }
 
 }
