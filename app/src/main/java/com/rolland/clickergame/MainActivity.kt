@@ -1,15 +1,27 @@
 package com.rolland.clickergame
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
+import com.bullfrog.particle.IParticleManager
+import com.bullfrog.particle.Particles
+import com.bullfrog.particle.animation.ParticleAnimation
+import com.bullfrog.particle.particle.configuration.Shape
+
 
 class MainActivity : AppCompatActivity() {
+
+    val particleColor = Color.parseColor("#FFD700")
 
     private lateinit var layout: ConstraintLayout
     private lateinit var firstUpgradeBtn: Button
@@ -17,8 +29,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var thirdUpgradeBtn: Button
     private lateinit var fourthUpgradeBtn: Button
     private lateinit var fifthUpgradeBtn: Button
-    private lateinit var testing_button: Button
     private lateinit var number: TextView
+    private lateinit var clickPower: TextView
+    private lateinit var autoPower: TextView
 
     private var click_multiplier = 1
     private var auto_clicker = 0
@@ -33,8 +46,10 @@ class MainActivity : AppCompatActivity() {
         thirdUpgradeBtn = findViewById(R.id.third_upgrade)
         fourthUpgradeBtn = findViewById(R.id.fourth_upgrade)
         fifthUpgradeBtn = findViewById(R.id.fifth_upgrade)
-        testing_button = findViewById(R.id.testing_button)
         number = findViewById(R.id.counter_view)
+        clickPower = findViewById(R.id.click_power_value)
+        autoPower = findViewById(R.id.auto_power_value)
+
 
         val handler = Handler(Looper.getMainLooper())
 
@@ -54,17 +69,53 @@ class MainActivity : AppCompatActivity() {
     // President Clicker -> +100$ per click (price 12000) - done
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onResume() {
         super.onResume()
 
-        layout.setOnClickListener() {
-            generateMoney(number)
+        val handleTouch = OnTouchListener { v, event ->
+            val particleManager: IParticleManager = Particles.with(this, layout)
+            val x = event.x.toInt()
+            val y = event.y.toInt()
+
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    generateMoney(number)
+
+                    particleManager // container is the parent ViewGroup for particles
+                        .color(particleColor)// color sampling
+                        .particleNum(5)// how many particles
+                        .anchor(x, y)// use touch position as the anchor of the animation
+                        .shape(Shape.HOLLOW_PENTACLE)// circle particle
+                        .radius(2, 15)// random radius from x to y
+                        .anim(ParticleAnimation.EXPLOSION)// using explosion animation
+                        .start()
+
+                    val handler = Handler(Looper.getMainLooper())
+                    val runnable = Runnable { particleManager.cancel() }
+
+                    handler.postDelayed(runnable, 1000)
+                }
+
+                MotionEvent.ACTION_MOVE -> {
+
+                }
+
+                MotionEvent.ACTION_UP -> {
+
+                }
+            }
+            true
         }
+
+        layout.setOnTouchListener(handleTouch)
 
         firstUpgradeBtn.setOnClickListener {
             if (number.text.toString().toInt() >= 50) {
                 click_multiplier++
                 number.text = (number.text.toString().toInt() - 50).toString()
+
+                updatePower()
             }
         }
 
@@ -72,6 +123,8 @@ class MainActivity : AppCompatActivity() {
             if (number.text.toString().toInt() >= 125) {
                 auto_clicker++
                 number.text = (number.text.toString().toInt() - 125).toString()
+
+                updatePower()
             }
         }
 
@@ -79,6 +132,8 @@ class MainActivity : AppCompatActivity() {
             if (number.text.toString().toInt() >= 500) {
                 click_multiplier += 5
                 number.text = (number.text.toString().toInt() - 500).toString()
+
+                updatePower()
             }
         }
 
@@ -86,6 +141,8 @@ class MainActivity : AppCompatActivity() {
             if (number.text.toString().toInt() >= 1100) {
                 auto_clicker += 6
                 number.text = (number.text.toString().toInt() - 1100).toString()
+
+                updatePower()
             }
         }
 
@@ -93,15 +150,9 @@ class MainActivity : AppCompatActivity() {
             if (number.text.toString().toInt() >= 12000) {
                 auto_clicker += 100
                 number.text = (number.text.toString().toInt() - 12000).toString()
-            }
-        }
 
-        testing_button.setOnClickListener {
-            Toast.makeText(
-                it.context,
-                "Click multiplier: $click_multiplier | Auto-Clicker: $auto_clicker",
-                Toast.LENGTH_LONG
-            ).show()
+                updatePower()
+            }
         }
     }
 
@@ -109,12 +160,19 @@ class MainActivity : AppCompatActivity() {
         var temp = numberView.text.toString().toInt() + auto_clicker
 
         numberView.text = temp.toString()
+
     }
 
     private fun generateMoney(numberView: TextView) {
         var temp = numberView.text.toString().toInt() + click_multiplier
 
         numberView.text = temp.toString()
+    }
+
+    // updates the power of clicks and autogenerate
+    private fun updatePower() {
+        autoPower.text = auto_clicker.toString()
+        clickPower.text = click_multiplier.toString()
     }
 
 }
