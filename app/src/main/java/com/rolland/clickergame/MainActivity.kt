@@ -28,6 +28,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var moneyFarmBtn: Button
     private lateinit var presidentClickerBtn: Button
     private lateinit var moneyPumpBtn: Button
+    private lateinit var kingClickerBtn: Button
+    private lateinit var moneyFactoryBtn: Button
+    private lateinit var emperorClickerBtn: Button
+    private lateinit var moneyPyramidBtn: Button
+
     private lateinit var clickPowerValueView: TextView
     private lateinit var autoPowerValueView: TextView
 
@@ -49,6 +54,11 @@ class MainActivity : AppCompatActivity() {
         moneyFarmBtn = findViewById(R.id.money_farm_btn)
         presidentClickerBtn = findViewById(R.id.president_clicker_btn)
         moneyPumpBtn = findViewById(R.id.money_pump_btn)
+        kingClickerBtn = findViewById(R.id.king_clicker_btn)
+        moneyFactoryBtn = findViewById(R.id.money_factory_btn)
+        emperorClickerBtn = findViewById(R.id.emperor_clicker_btn)
+        moneyPyramidBtn = findViewById(R.id.money_pyramid_btn)
+
         clickPowerValueView = findViewById(R.id.click_power_value)
         autoPowerValueView = findViewById(R.id.auto_power_value)
 
@@ -75,15 +85,18 @@ class MainActivity : AppCompatActivity() {
             when (event.action) {
                 MotionEvent.ACTION_DOWN -> {
                     generateMoney(score)
-
                     userClickCount++
-                    checkForSecondaryAchievement()
+                    when (userClickCount) {
+                        500000 -> resetUserClickCount()
+                    }
+
+                    checkForClickCountAchievement()
 
                     particleManager // container is the parent ViewGroup for particles
                         .color(particleColor)// color sampling
                         .particleNum(getParticleCount())// how many particles
-                        .anchor(x, y)// use touch position as the anchor of the animation
-                        .shape(Shape.HOLLOW_PENTACLE)// circle particle
+                        .anchor(x, y)// use current touch position as the anchor of the animation
+                        .shape(Shape.HOLLOW_PENTACLE)// pentacle particle
                         .radius(2, 15)// random radius from 2 to 15
                         .anim(ParticleAnimation.EXPLOSION)// using explosion animation
                         .start()
@@ -112,7 +125,7 @@ class MainActivity : AppCompatActivity() {
                 clickPowerValue++
                 score.text = (score.text.toString().toInt() - 50).toString()
 
-                updatePower()
+                updatePowers()
                 checkForClickPowerAchievements()
             }
         }
@@ -122,7 +135,7 @@ class MainActivity : AppCompatActivity() {
                 autoPowerValue++
                 score.text = (score.text.toString().toInt() - 125).toString()
 
-                updatePower()
+                updatePowers()
                 checkForAutoPowerAchievements()
             }
         }
@@ -132,7 +145,7 @@ class MainActivity : AppCompatActivity() {
                 clickPowerValue += 5
                 score.text = (score.text.toString().toInt() - 500).toString()
 
-                updatePower()
+                updatePowers()
                 checkForClickPowerAchievements()
             }
         }
@@ -142,7 +155,7 @@ class MainActivity : AppCompatActivity() {
                 autoPowerValue += 6
                 score.text = (score.text.toString().toInt() - 1100).toString()
 
-                updatePower()
+                updatePowers()
                 checkForAutoPowerAchievements()
             }
         }
@@ -152,7 +165,7 @@ class MainActivity : AppCompatActivity() {
                 clickPowerValue += 100
                 score.text = (score.text.toString().toInt() - 12000).toString()
 
-                updatePower()
+                updatePowers()
                 checkForClickPowerAchievements()
             }
         }
@@ -162,12 +175,56 @@ class MainActivity : AppCompatActivity() {
                 autoPowerValue += 200
                 score.text = (score.text.toString().toInt() - 100000).toString()
 
-                updatePower()
+                updatePowers()
+                checkForAutoPowerAchievements()
+            }
+        }
+
+        kingClickerBtn.setOnClickListener {
+            if (score.text.toString().toInt() >= 90000) {
+                clickPowerValue += 1000
+                score.text = (score.text.toString().toInt() - 90000).toString()
+
+                updatePowers()
+                checkForClickPowerAchievements()
+            }
+        }
+
+        moneyFactoryBtn.setOnClickListener {
+            if (score.text.toString().toInt() >= 315000) {
+                autoPowerValue += 5000
+                score.text = (score.text.toString().toInt() - 315000).toString()
+
+                updatePowers()
+                checkForAutoPowerAchievements()
+            }
+        }
+
+        emperorClickerBtn.setOnClickListener {
+            if (score.text.toString().toInt() >= 22000000) {
+                clickPowerValue += 9000
+                score.text = (score.text.toString().toInt() - 22000000).toString()
+
+                updatePowers()
+                checkForClickPowerAchievements()
+            }
+        }
+
+        moneyPyramidBtn.setOnClickListener {
+            if (score.text.toString().toInt() >= 81000000) {
+                autoPowerValue += 100000
+                score.text = (score.text.toString().toInt() - 81000000).toString()
+
+                updatePowers()
                 checkForAutoPowerAchievements()
             }
         }
     }
     // might break when number reaches Int limit (2147483647)
+
+    private fun resetUserClickCount() {
+        userClickCount = 0
+    }
 
     private fun autoGenerateMoney(scoreView: TextView) {
         val temp = scoreView.text.toString().toInt() + autoPowerValue
@@ -182,17 +239,19 @@ class MainActivity : AppCompatActivity() {
         scoreView.text = temp.toString()
     }
 
-    private fun updatePower() {
+    private fun updatePowers() {
         autoPowerValueView.text = autoPowerValue.toString()
         clickPowerValueView.text = clickPowerValue.toString()
     }
 
     private fun getParticleCount(): Int {
-        if (clickPowerValue >= 5000)
+        if (clickPowerValue >= 500000)
             return 5
-        else if (clickPowerValue >= 1000)
+        else if (clickPowerValue >= 50000)
+            return 4
+        else if (clickPowerValue >= 5000)
             return 3
-        else if (clickPowerValue >= 100)
+        else if (clickPowerValue >= 500)
             return 2
 
         return 1
@@ -225,6 +284,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // TODO:
+    //      1. add the safety measures (for now) for the score (so it doesn't go beyond the INT limit - 2 billion)
+    //      2. maybe (sometime) go beyond INT limit with implementing arrays instead (needs big number operations algorithms)
+    //      3. remove the appbar from being possible to click and make score
 
     private fun showClickPowerAchievement() {
         Toast.makeText(
@@ -241,7 +304,7 @@ class MainActivity : AppCompatActivity() {
         ).show()
     }
 
-    private fun checkForSecondaryAchievement() {
+    private fun checkForClickCountAchievement() {
         when (userClickCount) {
             100 -> showClickAchievement()
             500 -> showClickAchievement()

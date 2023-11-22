@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#161616"
-    android:paddingTop="8dp"
+    app:layout_constraintBottom_toTopOf="@id/appbar"
     tools:context=".MainActivity">
 
     <TextView
@@ -27,12 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="192dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginBottom="342dp"
         android:alpha="0.75"
         android:gravity="center"
         android:text="1"
         android:textColor="#41fdfe"
-        app:layout_constraintBottom_toTopOf="@id/cursor_btn"
+        app:layout_constraintBottom_toTopOf="@id/scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/click_power" />
@@ -55,29 +55,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="192dp"
-        android:layout_marginBottom="324dp"
+        android:layout_marginBottom="342dp"
         android:alpha="0.75"
         android:gravity="center"
         android:text="0"
         android:textColor="#41fdfe"
-        app:layout_constraintBottom_toTopOf="@id/auto_clicker_btn"
+        app:layout_constraintBottom_toTopOf="@id/scroll_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/auto_power" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:alpha="0.25"
-        android:gravity="center"
-        android:letterSpacing="0.2"
-        android:text="Tap the screen"
-        android:textColor="#9f9f9f"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="@id/appbar"
-        app:layout_constraintEnd_toEndOf="@id/auto_clicker_btn"
-        app:layout_constraintStart_toStartOf="@id/cursor_btn"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/score_view"
@@ -87,90 +73,162 @@
         android:text="0"
         android:textColor="#41fdfe"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/cursor_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="Cursor\n+1$ per click\nPrice: 50$"
-        android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/mr_clicker_btn"
-        app:layout_constraintEnd_toStartOf="@id/auto_clicker_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/auto_clicker_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="Auto Clicker\n+1$ per second\nPrice: 125$"
-        android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/money_farm_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/cursor_btn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/mr_clicker_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="Mr. Clicker\n+5$ per click\nPrice: 500$"
-        android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/president_clicker_btn"
-        app:layout_constraintEnd_toStartOf="@id/money_farm_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cursor_btn" />
-
-    <Button
-        android:id="@+id/money_farm_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="Money Farm\n+6$ per second\nPrice: 1.100$"
-        android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/money_pump_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/mr_clicker_btn"
-        app:layout_constraintTop_toBottomOf="@id/auto_clicker_btn" />
-
-    <Button
-        android:id="@+id/president_clicker_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="President Clicker\n+100$ per click\nPrice: 12.000$"
-        android:textColor="#161616"
-        app:layout_constraintBottom_toTopOf="@id/appbar"
-        app:layout_constraintEnd_toStartOf="@id/money_pump_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/mr_clicker_btn" />
-
-    <Button
-        android:id="@+id/money_pump_btn"
-        android:layout_width="192dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#41fdfe"
-        android:gravity="center"
-        android:text="Money Pump\n+200$ per second\nPrice: 100.000$"
-        android:textColor="#161616"
         app:layout_constraintBottom_toTopOf="@id/appbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/president_clicker_btn"
-        app:layout_constraintTop_toBottomOf="@id/money_farm_btn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="64dp"
+        android:alpha="0.25"
+        android:gravity="center"
+        android:letterSpacing="0.2"
+        android:text="Tap the screen"
+        android:textColor="#9f9f9f"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@id/appbar"
+        app:layout_constraintEnd_toEndOf="@id/appbar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:background="#191919"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/appbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp">
+
+            <Button
+                android:id="@+id/cursor_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Cursor\n+1$ / click\nPrice: 50$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/mr_clicker_btn"
+                app:layout_constraintEnd_toStartOf="@id/auto_clicker_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/auto_clicker_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Auto Clicker\n+1$ / s\nPrice: 125$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/money_farm_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/cursor_btn"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/mr_clicker_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Mr. Clicker\n+5$ / click\nPrice: 500$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/president_clicker_btn"
+                app:layout_constraintEnd_toStartOf="@id/money_farm_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cursor_btn" />
+
+            <Button
+                android:id="@+id/money_farm_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Money Farm\n+6$ / s\nPrice: 1.100$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/money_pump_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/mr_clicker_btn"
+                app:layout_constraintTop_toBottomOf="@id/auto_clicker_btn" />
+
+            <Button
+                android:id="@+id/president_clicker_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="President Clicker\n+100$ / click\nPrice: 12.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/king_clicker_btn"
+                app:layout_constraintEnd_toStartOf="@id/money_pump_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/mr_clicker_btn" />
+
+            <Button
+                android:id="@+id/money_pump_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Money Pump\n+200$ / s\nPrice: 100.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/money_factory_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/president_clicker_btn"
+                app:layout_constraintTop_toBottomOf="@id/money_farm_btn" />
+
+            <Button
+                android:id="@+id/king_clicker_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="King Clicker\n+1.000$ / click\nPrice: 90.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/emperor_clicker_btn"
+                app:layout_constraintEnd_toStartOf="@id/money_factory_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/president_clicker_btn" />
+
+            <Button
+                android:id="@+id/money_factory_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Money Factory\n+5.000$ / s\nPrice: 315.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toTopOf="@id/money_pyramid_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/king_clicker_btn"
+                app:layout_constraintTop_toBottomOf="@id/money_pump_btn" />
+
+            <Button
+                android:id="@+id/emperor_clicker_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Emperor Clicker\n+9.000$ / click\nPrice: 22.000.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/money_pyramid_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/king_clicker_btn" />
+
+            <Button
+                android:id="@+id/money_pyramid_btn"
+                android:layout_width="176dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#41fdfe"
+                android:text="Money Pyramid\n+100.000$ / s\nPrice: 81.000.000$"
+                android:textColor="#161616"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/emperor_clicker_btn"
+                app:layout_constraintTop_toBottomOf="@id/money_factory_btn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:id="@+id/appbar"
