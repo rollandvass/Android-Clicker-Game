@@ -32,6 +32,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var moneyFactoryBtn: Button
     private lateinit var emperorClickerBtn: Button
     private lateinit var moneyPyramidBtn: Button
+    private lateinit var popeClickerBtn: Button
+    private lateinit var moneyTempleBtn: Button
+    private lateinit var godClickerBtn: Button
+    private lateinit var moneyPowerPlantBtn: Button
 
     private lateinit var clickPowerValueView: TextView
     private lateinit var autoPowerValueView: TextView
@@ -58,6 +62,10 @@ class MainActivity : AppCompatActivity() {
         moneyFactoryBtn = findViewById(R.id.money_factory_btn)
         emperorClickerBtn = findViewById(R.id.emperor_clicker_btn)
         moneyPyramidBtn = findViewById(R.id.money_pyramid_btn)
+        popeClickerBtn = findViewById(R.id.pope_clicker_btn)
+        moneyTempleBtn = findViewById(R.id.money_temple_btn)
+        godClickerBtn = findViewById(R.id.god_clicker_btn)
+        moneyPowerPlantBtn = findViewById(R.id.money_power_plant_btn)
 
         clickPowerValueView = findViewById(R.id.click_power_value)
         autoPowerValueView = findViewById(R.id.auto_power_value)
@@ -86,9 +94,6 @@ class MainActivity : AppCompatActivity() {
                 MotionEvent.ACTION_DOWN -> {
                     generateMoney(score)
                     userClickCount++
-                    when (userClickCount) {
-                        500000 -> resetUserClickCount()
-                    }
 
                     checkForClickCountAchievement()
 
@@ -121,9 +126,9 @@ class MainActivity : AppCompatActivity() {
         layout.setOnTouchListener(handleTouch)
 
         cursorBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 50) {
+            if (score.text.toString().toLong() >= 50) {
                 clickPowerValue++
-                score.text = (score.text.toString().toInt() - 50).toString()
+                score.text = (score.text.toString().toLong() - 50).toString()
 
                 updatePowers()
                 checkForClickPowerAchievements()
@@ -131,9 +136,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         autoClickerBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 125) {
+            if (score.text.toString().toLong() >= 125) {
                 autoPowerValue++
-                score.text = (score.text.toString().toInt() - 125).toString()
+                score.text = (score.text.toString().toLong() - 125).toString()
 
                 updatePowers()
                 checkForAutoPowerAchievements()
@@ -141,9 +146,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         mrClickerBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 500) {
+            if (score.text.toString().toLong() >= 500) {
                 clickPowerValue += 5
-                score.text = (score.text.toString().toInt() - 500).toString()
+                score.text = (score.text.toString().toLong() - 500).toString()
 
                 updatePowers()
                 checkForClickPowerAchievements()
@@ -151,9 +156,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         moneyFarmBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 1100) {
+            if (score.text.toString().toLong() >= 1100) {
                 autoPowerValue += 6
-                score.text = (score.text.toString().toInt() - 1100).toString()
+                score.text = (score.text.toString().toLong() - 1100).toString()
 
                 updatePowers()
                 checkForAutoPowerAchievements()
@@ -161,9 +166,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         presidentClickerBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 12000) {
+            if (score.text.toString().toLong() >= 12000) {
                 clickPowerValue += 100
-                score.text = (score.text.toString().toInt() - 12000).toString()
+                score.text = (score.text.toString().toLong() - 12000).toString()
 
                 updatePowers()
                 checkForClickPowerAchievements()
@@ -171,9 +176,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         moneyPumpBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 100000) {
+            if (score.text.toString().toLong() >= 100000) {
                 autoPowerValue += 200
-                score.text = (score.text.toString().toInt() - 100000).toString()
+                score.text = (score.text.toString().toLong() - 100000).toString()
 
                 updatePowers()
                 checkForAutoPowerAchievements()
@@ -181,9 +186,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         kingClickerBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 90000) {
+            if (score.text.toString().toLong() >= 90000) {
                 clickPowerValue += 1000
-                score.text = (score.text.toString().toInt() - 90000).toString()
+                score.text = (score.text.toString().toLong() - 90000).toString()
 
                 updatePowers()
                 checkForClickPowerAchievements()
@@ -191,9 +196,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         moneyFactoryBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 315000) {
+            if (score.text.toString().toLong() >= 315000) {
                 autoPowerValue += 5000
-                score.text = (score.text.toString().toInt() - 315000).toString()
+                score.text = (score.text.toString().toLong() - 315000).toString()
 
                 updatePowers()
                 checkForAutoPowerAchievements()
@@ -201,9 +206,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         emperorClickerBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 22000000) {
+            if (score.text.toString().toLong() >= 22000000) {
                 clickPowerValue += 9000
-                score.text = (score.text.toString().toInt() - 22000000).toString()
+                score.text = (score.text.toString().toLong() - 22000000).toString()
 
                 updatePowers()
                 checkForClickPowerAchievements()
@@ -211,37 +216,72 @@ class MainActivity : AppCompatActivity() {
         }
 
         moneyPyramidBtn.setOnClickListener {
-            if (score.text.toString().toInt() >= 81000000) {
+            if (score.text.toString().toLong() >= 81000000) {
                 autoPowerValue += 100000
-                score.text = (score.text.toString().toInt() - 81000000).toString()
+                score.text = (score.text.toString().toLong() - 81000000).toString()
+
+                updatePowers()
+                checkForAutoPowerAchievements()
+            }
+        }
+
+        popeClickerBtn.setOnClickListener {
+            if (score.text.toString().toLong() >= 300000000) {
+                clickPowerValue += 25000
+                score.text = (score.text.toString().toLong() - 300000000).toString()
+
+                updatePowers()
+                checkForClickPowerAchievements()
+            }
+        }
+
+        moneyTempleBtn.setOnClickListener {
+            if (score.text.toString().toLong() >= 900000000) {
+                autoPowerValue += 200000
+                score.text = (score.text.toString().toLong() - 900000000).toString()
+
+                updatePowers()
+                checkForAutoPowerAchievements()
+            }
+        }
+
+        godClickerBtn.setOnClickListener {
+            if (score.text.toString().toLong() >= 1800000000) {
+                clickPowerValue += 100000
+                score.text = (score.text.toString().toLong() - 1800000000).toString()
+
+                updatePowers()
+                checkForClickPowerAchievements()
+            }
+        }
+
+        moneyPowerPlantBtn.setOnClickListener {
+            if (score.text.toString().toLong() >= 3000000000) {
+                autoPowerValue += 1000000
+                score.text = (score.text.toString().toLong() - 3000000000).toString()
 
                 updatePowers()
                 checkForAutoPowerAchievements()
             }
         }
     }
-    // might break when number reaches Int limit (2147483647)
-
-    private fun resetUserClickCount() {
-        userClickCount = 0
-    }
 
     private fun autoGenerateMoney(scoreView: TextView) {
-        val temp = scoreView.text.toString().toInt() + autoPowerValue
+        val temp = scoreView.text.toString().toLong() + autoPowerValue
 
-        scoreView.text = temp.toString()
+        "$temp".also { scoreView.text = it }
 
     }
 
     private fun generateMoney(scoreView: TextView) {
-        val temp = scoreView.text.toString().toInt() + clickPowerValue
+        val temp = scoreView.text.toString().toLong() + clickPowerValue
 
-        scoreView.text = temp.toString()
+        "$temp".also { scoreView.text = it }
     }
 
     private fun updatePowers() {
-        autoPowerValueView.text = autoPowerValue.toString()
-        clickPowerValueView.text = clickPowerValue.toString()
+        "$$clickPowerValue / click".also { clickPowerValueView.text = it }
+        "$$autoPowerValue / second".also { autoPowerValueView.text = it }
     }
 
     private fun getParticleCount(): Int {
@@ -267,6 +307,8 @@ class MainActivity : AppCompatActivity() {
             100000 -> showClickPowerAchievement()
             500000 -> showClickPowerAchievement()
             1000000 -> showClickPowerAchievement()
+            10000000 -> showClickPowerAchievement()
+            100000000 -> showClickPowerAchievement()
         }
     }
 
@@ -281,13 +323,13 @@ class MainActivity : AppCompatActivity() {
             100000 -> showAutoPowerAchievement()
             500000 -> showAutoPowerAchievement()
             1000000 -> showAutoPowerAchievement()
+            10000000 -> showAutoPowerAchievement()
+            100000000 -> showAutoPowerAchievement()
         }
     }
 
     // TODO:
-    //      1. add the safety measures (for now) for the score (so it doesn't go beyond the INT limit - 2 billion)
-    //      2. maybe (sometime) go beyond INT limit with implementing arrays instead (needs big number operations algorithms)
-    //      3. remove the appbar from being possible to click and make score
+    //      1. remove the appbar from being possible to click and make score
 
     private fun showClickPowerAchievement() {
         Toast.makeText(
@@ -316,6 +358,7 @@ class MainActivity : AppCompatActivity() {
             100000 -> showClickAchievement()
             250000 -> showClickAchievement()
             500000 -> showClickAchievement()
+            1000000 -> showClickAchievement()
         }
     }
 
