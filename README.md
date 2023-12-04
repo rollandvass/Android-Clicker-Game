@@ -7,7 +7,7 @@ Where you just click and upgrade more and more.
 <h3 align="center">
 Trust me. It's addicting.
 </h3>
-<h6>
+<h6 align="center">
 Technologies used: Kotlin, XML
 Management Technologies used: Trello, and obviously Git.
 </h6>
