@@ -1,7 +1,11 @@
 <p align="center">
-# A simple clicker game
+#A simple clicker game
 </p>
 <br>
 <p align="center">
-// Your content
+##Where you just click and upgrade more and more.
+</p>
+<br>
+<p align="center">
+###Trust me. It's addicting.
 </p>
