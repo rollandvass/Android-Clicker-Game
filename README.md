@@ -13,3 +13,6 @@ Technologies used: Kotlin, XML, and kinda async programming?
 <h6 align="center">
 Management Technologies used: Trello, and obviously Git.
 </h6>
+<h6 align="center">
+IDE used: Android Studio SDK.
+</h6>
