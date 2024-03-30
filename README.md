@@ -8,11 +8,11 @@ Where you just click and upgrade more and more.
 Trust me. It's addicting.
 </h3>
 <h6 align="center">
-Technologies used: Kotlin, XML, and kinda async programming?
+Technologies used: Kotlin, XML
 </h6>
 <h6 align="center">
 Management Technologies used: Trello, and obviously Git.
 </h6>
 <h6 align="center">
-IDE used: Android Studio SDK.
+IDE used: Android Studio.
 </h6>
